@@ -13,7 +13,7 @@
   height: auto;
 }
 
-a {
+.go-back {
   font-size: 1.2rem;
   font-weight: 600;
   display: flex;
@@ -74,4 +74,13 @@ a {
   box-shadow: 0 4px 0 1px #0000005d;
   font-size: 1.2rem;
   margin-top: 1.5rem;
+}
+
+.alt {
+  align-self: center;
+  padding-top: 0.5rem;
+}
+
+.alt-link {
+  color: var(--main-color);
 }

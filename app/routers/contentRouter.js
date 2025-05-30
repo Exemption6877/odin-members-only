@@ -8,5 +8,6 @@ const authController = require("../controllers/authController");
 contentRouter.get("/", contentController.getGuestContent);
 
 contentRouter.get("/sign-up", authController.getSignUp);
+contentRouter.get("/log-in", authController.getLogIn);
 
 module.exports = contentRouter;
