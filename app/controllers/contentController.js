@@ -1,7 +1,7 @@
-async function notAuthContent(req, res) {
+async function getGuestContent(req, res) {
   res.render("index");
 }
 
 module.exports = {
-  notAuthContent,
+  getGuestContent,
 };
