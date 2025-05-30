@@ -15,13 +15,15 @@
 
 a {
   font-size: 1.2rem;
+  font-weight: 600;
   display: flex;
   background-color: var(--secondary-color);
-  color: black;
+  color: var(--main-color);
   border: none;
   padding: 0.3rem 0.8rem;
   border-radius: 2ch;
-  box-shadow: 0 4px 0 1px #0000005d;
+  box-shadow: 1px 3px 0 2px #0000005d;
+  margin-bottom: 1.5rem;
 }
 
 .authBg {
@@ -41,18 +43,25 @@ a {
   background-color: var(--secondary-color);
   padding: 2rem 3rem 3rem 3rem;
   border-radius: 4ch;
-  gap: 0.8rem;
   box-shadow: 8px 16px 0 8px #0000005d;
+  gap: 0.6rem;
 }
 
 .authBlock > label {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 1.2rem;
 }
 
 .authBlock > input {
   border-radius: 2ch;
   padding: 0.3rem 1rem;
+  border: 2px solid black;
+  width: 260px;
+}
+
+.authBlock > input:focus {
+  outline: none;
+  border: 2px solid var(--main-color);
 }
 
 .authBlock input[type="submit"] {
@@ -64,4 +73,5 @@ a {
   border-radius: 2ch;
   box-shadow: 0 4px 0 1px #0000005d;
   font-size: 1.2rem;
+  margin-top: 1.5rem;
 }
