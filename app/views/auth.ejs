@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/auth.css" />
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="icon" href="/icons/favicon.png" type="image/png" />
+
     <title><%=method === 'sign-up' ? 'Sign Up' : 'Log In' %></title>
   </head>
   <body>
@@ -35,15 +37,15 @@
         <% } %>
 
         <input type="submit" value="Submit" />
-        <% if (method === 'sign-up') { %>
+
         <p class="alt">
-          Already registered? <a class="alt-link" href="/log-in">Log In.</a>
+          <% if (method === 'sign-up') { %> Already registered?
+          <a class="alt-link" href="/log-in">Log In.</a>
+          <%} else { %> Not registered yet?
+          <a class="alt-link" href="/sign-up">Sign Up.</a>
+
+          <% } %>
         </p>
-        <%} else { %>
-        <p class="alt">
-          Not registered yet? <a class="alt-link" href="/sign-up">Sign Up.</a>
-        </p>
-        <% } %>
       </form>
     </main>
   </body>
