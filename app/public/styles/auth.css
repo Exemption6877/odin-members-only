@@ -88,3 +88,9 @@
 .alt-link {
   color: var(--main-color);
 }
+
+.line {
+  border-bottom: 1px dotted black;
+  width: 100%;
+  margin: 1rem 0;
+}
