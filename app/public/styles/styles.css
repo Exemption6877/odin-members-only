@@ -1,0 +1,24 @@
+:root {
+  --main-color: #0066ff;
+  --secondary-color: #ffffff;
+}
+
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

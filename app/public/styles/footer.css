@@ -1,0 +1,10 @@
+@import url("./styles.css");
+
+footer {
+  display: flex;
+  background-color: var(--main-color);
+  justify-content: center;
+  padding: 0.5rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+}
