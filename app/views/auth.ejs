@@ -22,6 +22,9 @@
         action="<%= method === 'sign-up' ? '/sign-up' : '/log-in' %>"
         method="POST"
       >
+        <h2 class="methodName">
+          <%= method === 'sign-up' ? 'Sign Up' : 'Log In'%>
+        </h2>
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required />
         <label for="password">Password</label>

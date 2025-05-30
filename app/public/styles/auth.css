@@ -13,6 +13,10 @@
   height: auto;
 }
 
+.methodName {
+  align-self: center;
+}
+
 .go-back {
   font-size: 1.2rem;
   font-weight: 600;
