@@ -1,10 +1,17 @@
 const db = require("../db/query");
-
+const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
 async function postLogIn(req, res) {
   const { email, password } = req.body;
+
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
+
   try {
     const user = await db.userByEmail(email);
 
@@ -23,6 +30,12 @@ async function postLogIn(req, res) {
 
 async function postSignUp(req, res) {
   const { email, password, confirmPassword, first_name, last_name } = req.body;
+
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).json({ errors: validationErrors.array() });
+  }
 
   try {
     const password_hash = await bcrypt.hash(password, saltRounds);
