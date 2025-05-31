@@ -8,9 +8,18 @@ async function isEmailTaken(email) {
   return result.rows.length > 0;
 }
 
+async function userByEmail(email) {
+  const { rows } = await pool.query(
+    `SELECT password FROM users WHERE email = $1 LIMIT 1`,
+    [email]
+  );
+
+  return rows[0];
+}
+
 async function authUser(email, password) {
   const result = await pool.query(
-    `Select first_name FROM users WHERE email = $1 AND password = $2`,
+    `SELECT first_name FROM users WHERE email = $1 AND password = $2`,
     [email, password]
   );
 
@@ -31,4 +40,4 @@ async function createUser(email, password, first_name, last_name) {
   );
 }
 
-module.exports = { isEmailTaken, authUser, createUser };
+module.exports = { isEmailTaken, userByEmail, authUser, createUser };

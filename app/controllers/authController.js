@@ -1,12 +1,42 @@
-const bcrypt = require("bcryptjs");
 const db = require("../db/query");
 
-async function postLogIn(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-  const result = await db.authUser(email, password);
+const bcrypt = require("bcryptjs");
+const saltRounds = 10;
 
-  return result ? res.send("logged-in") : res.send("wrong log-in");
+async function postLogIn(req, res) {
+  const { email, password } = req.body;
+  try {
+    const user = await db.userByEmail(email);
+
+    if (!user || !user.password) {
+      return res.send("No such user");
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    return isMatch ? res.send("logged-in") : res.send("wrong log-in");
+  } catch (err) {
+    console.error("Error in postLogIn:", err);
+    res.status(500).send("Something went wrong");
+  }
+}
+
+async function postSignUp(req, res) {
+  const { email, password, confirmPassword, first_name, last_name } = req.body;
+
+  try {
+    const password_hash = await bcrypt.hash(password, saltRounds);
+
+    if (password !== confirmPassword) {
+      res.send("Confirm password is not matching");
+    }
+
+    await db.createUser(email, password_hash, first_name, last_name);
+    res.redirect("/");
+  } catch (err) {
+    console.error("Error in postSignUp:", err);
+    res.status(500).send("Something went wrong");
+  }
 }
 
 async function getSignUp(req, res) {
@@ -21,4 +51,5 @@ module.exports = {
   getSignUp,
   getLogIn,
   postLogIn,
+  postSignUp,
 };

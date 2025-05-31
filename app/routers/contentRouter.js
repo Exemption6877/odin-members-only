@@ -8,6 +8,8 @@ const authController = require("../controllers/authController");
 contentRouter.get("/", contentController.getGuestContent);
 
 contentRouter.get("/sign-up", authController.getSignUp);
+contentRouter.post("/sign-up", authController.postSignUp);
+
 contentRouter.get("/log-in", authController.getLogIn);
 contentRouter.post("/log-in", authController.postLogIn);
 
