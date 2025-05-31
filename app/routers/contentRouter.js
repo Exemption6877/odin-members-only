@@ -1,5 +1,6 @@
 const { Router } = require("express");
 
+const passport = require("passport");
 const contentRouter = Router();
 const { body } = require("express-validator");
 const contentController = require("../controllers/contentController");
@@ -58,7 +59,10 @@ contentRouter.post(
       .isLength({ min: 6 })
       .withMessage("Password is required"),
   ],
-  authController.postLogIn
+  passport.authenticate("local", {
+    successRedirect: "/success",
+    failureRedirect: "/nope",
+  })
 );
 
 module.exports = contentRouter;

@@ -1,32 +1,38 @@
 const db = require("../db/query");
 const { validationResult } = require("express-validator");
+
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
-async function postLogIn(req, res) {
-  const { email, password } = req.body;
+// async function postLogIn(req, res) {  passport.authenticate("local", {
+//     successRedirect: "/",
+//     failureRedirect: "/"
+//   })}
 
-  const validationErrors = validationResult(req);
+// async function postLogIn(req, res) {
+//   const { email, password } = req.body;
 
-  if (!validationErrors.isEmpty()) {
-    return res.status(400).json({ errors: validationErrors.array() });
-  }
+//   const validationErrors = validationResult(req);
 
-  try {
-    const user = await db.userByEmail(email);
+//   if (!validationErrors.isEmpty()) {
+//     return res.status(400).json({ errors: validationErrors.array() });
+//   }
 
-    if (!user || !user.password) {
-      return res.send("No such user");
-    }
+//   try {
+//     const user = await db.userByEmail(email);
 
-    const isMatch = await bcrypt.compare(password, user.password);
+//     if (!user || !user.password) {
+//       return res.send("No such user");
+//     }
 
-    return isMatch ? res.send("logged-in") : res.send("wrong log-in");
-  } catch (err) {
-    console.error("Error in postLogIn:", err);
-    res.status(500).send("Something went wrong");
-  }
-}
+//     const isMatch = await bcrypt.compare(password, user.password);
+
+//     return isMatch ? res.send("logged-in") : res.send("wrong log-in");
+//   } catch (err) {
+//     console.error("Error in postLogIn:", err);
+//     res.status(500).send("Something went wrong");
+//   }
+// }
 
 async function postSignUp(req, res) {
   const { email, password, confirmPassword, first_name, last_name } = req.body;
@@ -63,6 +69,5 @@ async function getLogIn(req, res) {
 module.exports = {
   getSignUp,
   getLogIn,
-  postLogIn,
   postSignUp,
 };
