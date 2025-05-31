@@ -1,5 +1,7 @@
 const express = require("express");
-
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const path = require("path");
 
 const app = express();
@@ -16,6 +18,16 @@ app.use(express.static(assetsPath));
 const PORT = process.env.APP_PORT;
 
 const indexContent = require("./routers/contentRouter");
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.session());
 
 app.use("/", indexContent);
 
