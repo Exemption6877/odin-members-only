@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/auth.css" />
     <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" href="styles/error.css" />
     <link rel="icon" href="/icons/favicon.png" type="image/png" />
 
     <title>
@@ -22,7 +23,7 @@
         <img src="/icons/logo.svg" alt="logo" />
         <h2>Chirper</h2>
       </div>
-      <% if(method !== 'membership'){ %>
+      <%- include("./partials/error.ejs") %> <% if(method !== 'membership'){ %>
 
       <form
         class="authBlock"

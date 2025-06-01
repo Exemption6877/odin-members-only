@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="stylesheet" href="styles/message.css" />
+    <link rel="stylesheet" href="styles/error.css" />
 
     <%if (isAuthenticated){%>
     <link rel="stylesheet" href="styles/newEntry.css" />
@@ -19,10 +20,11 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
     <main class="messageTable">
-      <% if(isAuthenticated) { %> <%- include("./partials/newEntry.ejs") %> <% }
-      %> <% if (messages.length > 0) { %> <% messages.forEach(message => { %>
-      <%- include("./partials/message.ejs", { message:message }) %> <% }) %> <%
-      } else {%>
+      <%- include("./partials/error.ejs") %> <% if(isAuthenticated) { %> <%-
+      include("./partials/newEntry.ejs") %> <% } %> <% if (messages.length > 0)
+      { %> <% messages.forEach(message => { %> <%-
+      include("./partials/message.ejs", { message:message }) %> <% }) %> <% }
+      else {%>
       <p class="notifier">No posts here yet!</p>
       <% } %>
     </main>

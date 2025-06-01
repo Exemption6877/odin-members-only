@@ -1,0 +1,13 @@
+<% if ((typeof errors !== 'undefined' && errors.length > 0) || (typeof msg !==
+'undefined' && msg) || (typeof error !== 'undefined' && error)) { %>
+<div class="error">
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %> <%
+  errors.forEach(error => { %>
+  <p><%= error.msg %></p>
+  <% }) %> <% } %> <% if (typeof msg !== 'undefined' && msg) { %>
+  <p><%= msg %></p>
+  <% } %> <% if (typeof error !== 'undefined' && error) { %>
+  <p><%= error.msg %></p>
+  <% } %>
+</div>
+<% } %>

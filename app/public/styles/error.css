@@ -1,0 +1,8 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+  color: var(--secondary-color);
+  padding: 1rem;
+  border-radius: 2ch;
+}
