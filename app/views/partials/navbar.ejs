@@ -9,8 +9,9 @@
   <% } %>
   <ul>
     <li><a href="/">Home</a></li>
-    <% if(isAuthenticated){%>
-
+    <% if(isAuthenticated){%> <% if (!user.membership){ %>
+    <li><a href="/membership">Membership</a></li>
+    <% } %>
     <li>
       <form action="/log-out" method="POST">
         <button class="signIn" type="submit">Log Out</button>

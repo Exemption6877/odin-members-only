@@ -6,7 +6,9 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    admin BOOLEAN DEFAULT FALSE
+    admin BOOLEAN DEFAULT FALSE,
+    membership BOOLEAN DEFAULT FALSE
+
 );
 
 CREATE TABLE posts (

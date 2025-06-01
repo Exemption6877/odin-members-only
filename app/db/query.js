@@ -40,4 +40,16 @@ async function createUser(email, password, first_name, last_name) {
   );
 }
 
-module.exports = { isEmailTaken, userByEmail, authUser, createUser };
+async function updateMembership(email) {
+  await pool.query(`UPDATE users SET membership = TRUE WHERE email = $1`, [
+    email,
+  ]);
+}
+
+module.exports = {
+  isEmailTaken,
+  userByEmail,
+  authUser,
+  createUser,
+  updateMembership,
+};

@@ -39,8 +39,29 @@ async function getLogIn(req, res) {
   res.render("auth", { method: "log-in" });
 }
 
+async function getMembership(req, res) {
+  res.render("auth", { method: "membership" });
+}
+
+async function postMembership(req, res) {
+  const validationErrors = validationResult(req);
+
+  try {
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    await db.updateMembership(req.user.email);
+    res.redirect("/");
+  } catch (err) {
+    console.error("Error in postSignUp:", err);
+    res.status(500).send("Something went wrong");
+  }
+}
+
 module.exports = {
   getSignUp,
   getLogIn,
   postSignUp,
+  getMembership,
+  postMembership,
 };

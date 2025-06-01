@@ -13,6 +13,18 @@ function checkAuth(req, res, next) {
   next();
 }
 
+function checkMembership(req, res, next) {
+  if (!req.user) {
+    return res.redirect("/");
+  }
+
+  if (req.user.membership) {
+    return res.redirect("/");
+  }
+
+  next();
+}
+
 contentRouter.get("/", contentController.getGuestContent);
 
 contentRouter.get("/sign-up", checkAuth, authController.getSignUp);
@@ -30,14 +42,6 @@ contentRouter.post(
       .notEmpty()
       .isLength({ min: 6 })
       .withMessage("Password is required"),
-
-    body("secret").custom((value) => {
-      if (value !== process.env.MEMBER_SECRET) {
-        throw new Error("Secret password is incorrect.");
-      }
-
-      return true;
-    }),
 
     body("confirmPassword").custom((value, { req }) => {
       if (value !== req.body.password) {
@@ -73,5 +77,21 @@ contentRouter.post("/log-out", (req, res) => {
     res.redirect("/");
   });
 });
+
+contentRouter.get("/membership", checkMembership, authController.getMembership);
+
+contentRouter.post(
+  "/membership",
+  [
+    body("secret").custom((value) => {
+      if (value !== process.env.MEMBER_SECRET) {
+        throw new Error("Secret password is incorrect.");
+      }
+
+      return true;
+    }),
+  ],
+  authController.postMembership
+);
 
 module.exports = contentRouter;
