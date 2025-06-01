@@ -11,6 +11,8 @@ const db = require("./db/query");
 const app = express();
 const pgSession = require("connect-pg-simple")(session);
 
+const initdb = require("../initdb");
+
 require("dotenv").config({ path: "../.env" });
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,6 +25,7 @@ app.use(express.static(assetsPath));
 const PORT = process.env.APP_PORT;
 
 const indexContent = require("./routers/contentRouter");
+const initDb = require("../initdb");
 
 app.use(
   session({
@@ -97,6 +100,8 @@ app.use((req, res, next) => {
 
 app.use("/", indexContent);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+initDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+  });
 });
