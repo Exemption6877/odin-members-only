@@ -25,6 +25,17 @@ function checkMembership(req, res, next) {
   next();
 }
 
+function checkAdmin(req, res, next) {
+  if (!req.user) {
+    return res.redirect("/");
+  }
+
+  if (!req.user.admin) {
+    return res.redirect("/");
+  }
+  next();
+}
+
 contentRouter.get("/", contentController.getGuestContent);
 
 contentRouter.get("/sign-up", checkAuth, authController.getSignUp);
@@ -100,6 +111,10 @@ contentRouter.post(
   contentController.postNewPost
 );
 
-contentRouter.post("/delete/:post_id", contentController.postDeletePost);
+contentRouter.post(
+  "/delete/:post_id",
+  checkAdmin,
+  contentController.postDeletePost
+);
 
 module.exports = contentRouter;
