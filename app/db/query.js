@@ -48,7 +48,7 @@ async function updateMembership(email) {
 
 async function getAllPosts() {
   const { rows } = await pool.query(
-    `SELECT content, release_date, first_name, last_name FROM posts
+    `SELECT posts.id, content, release_date, first_name, last_name FROM posts
 JOIN users ON user_id = users.id
 ORDER BY release_date`
   );
@@ -62,6 +62,10 @@ async function insertNewPost(content, release_date, user_id) {
   );
 }
 
+async function deletePost(post_id) {
+  await pool.query(`DELETE FROM posts WHERE id = $1`, [post_id]);
+}
+
 module.exports = {
   isEmailTaken,
   userByEmail,
@@ -70,4 +74,5 @@ module.exports = {
   updateMembership,
   getAllPosts,
   insertNewPost,
+  deletePost,
 };

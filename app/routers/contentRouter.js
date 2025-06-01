@@ -100,4 +100,6 @@ contentRouter.post(
   contentController.postNewPost
 );
 
+contentRouter.post("/delete/:post_id", contentController.postDeletePost);
+
 module.exports = contentRouter;

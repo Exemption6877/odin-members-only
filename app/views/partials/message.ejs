@@ -6,4 +6,11 @@
   </div>
   <% } %>
   <div class="content"><p><%= message.content %></p></div>
+  <div>
+    <% if(user && user.admin){%>
+    <form action="/delete/<%=message.id%>" method="post">
+      <button class="delete" type="submit">Delete</button>
+    </form>
+    <% }%>
+  </div>
 </div>

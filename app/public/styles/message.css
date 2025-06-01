@@ -32,3 +32,22 @@
   max-width: 800px;
   align-items: center;
 }
+
+.notifier {
+  margin-top: 2rem;
+  font-size: 3rem;
+}
+
+.delete {
+  display: flex;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2ch;
+  box-shadow: 0 4px 0 1px #0000005d;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}

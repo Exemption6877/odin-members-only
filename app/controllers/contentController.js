@@ -30,7 +30,19 @@ async function postNewPost(req, res) {
   }
 }
 
+async function postDeletePost(req, res) {
+  try {
+    const { post_id } = req.params;
+
+    await db.deletePost(post_id);
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send("Something went wrong");
+  }
+}
+
 module.exports = {
   getGuestContent,
   postNewPost,
+  postDeletePost,
 };
