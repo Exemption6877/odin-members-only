@@ -6,9 +6,16 @@ const { body } = require("express-validator");
 const contentController = require("../controllers/contentController");
 const authController = require("../controllers/authController");
 
+function checkAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+  next();
+}
+
 contentRouter.get("/", contentController.getGuestContent);
 
-contentRouter.get("/sign-up", authController.getSignUp);
+contentRouter.get("/sign-up", checkAuth, authController.getSignUp);
 contentRouter.post(
   "/sign-up",
   [
@@ -52,13 +59,19 @@ contentRouter.post(
   authController.postSignUp
 );
 
-contentRouter.get("/log-in", authController.getLogIn);
+contentRouter.get("/log-in", checkAuth, authController.getLogIn);
 contentRouter.post(
   "/log-in",
   passport.authenticate("local", {
-    successRedirect: "/success",
+    successRedirect: "/",
     failureRedirect: "/nope",
   })
 );
+
+contentRouter.post("/logout", (req, res) => {
+  req.logout(() => {
+    res.redirect("/");
+  });
+});
 
 module.exports = contentRouter;

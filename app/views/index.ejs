@@ -13,7 +13,11 @@
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <main><h1>Content goes here</h1></main>
+    <main>
+      <% if(isAuthenticated){%>
+      <h1>Welcome <%=user.first_name%></h1>
+      <%}%>
+    </main>
   </body>
   <%- include("./partials/footer.ejs") %>
 </html>

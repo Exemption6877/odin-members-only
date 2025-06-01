@@ -87,6 +87,14 @@ passport.deserializeUser(async (id, done) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Pass user info while logged in
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+});
+
 app.use("/", indexContent);
 
 app.listen(PORT, () => {
