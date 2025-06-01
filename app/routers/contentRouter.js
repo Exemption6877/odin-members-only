@@ -47,18 +47,6 @@ contentRouter.post(
 contentRouter.get("/log-in", authController.getLogIn);
 contentRouter.post(
   "/log-in",
-  [
-    body("email")
-      .trim()
-      .isEmail()
-      .normalizeEmail()
-      .withMessage("Invalid email"),
-    body("password")
-      .trim()
-      .notEmpty()
-      .isLength({ min: 6 })
-      .withMessage("Password is required"),
-  ],
   passport.authenticate("local", {
     successRedirect: "/success",
     failureRedirect: "/nope",
