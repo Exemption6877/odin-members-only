@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
-
 async function postSignUp(req, res) {
   const { email, password, first_name, last_name } = req.body;
 
@@ -15,6 +14,13 @@ async function postSignUp(req, res) {
   }
 
   try {
+    const existingUser = await db.userByEmail(email);
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "Email already registered" }] });
+    }
+
     const password_hash = await bcrypt.hash(password, saltRounds);
 
     await db.createUser(email, password_hash, first_name, last_name);

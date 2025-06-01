@@ -9,6 +9,7 @@ const bcrypt = require("bcryptjs");
 const pool = require("./db/pool");
 const db = require("./db/query");
 const app = express();
+const pgSession = require("connect-pg-simple")(session);
 
 require("dotenv").config({ path: "../.env" });
 app.use(express.urlencoded({ extended: true }));
@@ -25,9 +26,19 @@ const indexContent = require("./routers/contentRouter");
 
 app.use(
   session({
+    store: new pgSession({
+      pool: pool,
+      tableName: "session",
+      createTableIfMissing: true,
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+      httpOnly: true,
+      sameSite: "lax",
+    },
   })
 );
 
