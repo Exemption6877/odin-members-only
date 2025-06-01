@@ -13,9 +13,14 @@ html {
   background-color: var(--secondary-color);
   font-family: var(--main-font);
   height: 100%;
+  width: 100%;
+  align-items: center;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
 }
 

@@ -14,7 +14,7 @@
   </head>
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <main>
+    <main class="messageTable">
       <% if (messages) { %> <% messages.forEach(message => { %> <%-
       include("./partials/message.ejs", { message:message }) %> <% }) %> <% } %>
     </main>

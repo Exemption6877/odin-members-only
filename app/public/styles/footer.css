@@ -7,4 +7,5 @@ footer {
   padding: 0.5rem;
   color: var(--secondary-color);
   font-weight: 500;
+  width: 100%;
 }

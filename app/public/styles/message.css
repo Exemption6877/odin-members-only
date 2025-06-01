@@ -3,9 +3,32 @@
 .messageEntry {
   display: flex;
   flex-direction: column;
-  background-color: bisque;
+  border: 2px solid var(--main-color);
+  border-radius: 1ch;
+  box-shadow: 1px 4px 0 1px #00000038;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem;
+  min-height: 150px;
+}
+
+.messageEntry > p {
+  align-self: center;
 }
 
 .messageTitle {
+  margin-top: 1rem;
   display: flex;
+  justify-self: baseline;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.messageTable {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  max-width: 800px;
+  align-items: center;
 }
