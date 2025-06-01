@@ -5,7 +5,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const path = require("path");
 
 const bcrypt = require("bcryptjs");
-const saltRounds = 10;
 
 const pool = require("./db/pool");
 const db = require("./db/query");

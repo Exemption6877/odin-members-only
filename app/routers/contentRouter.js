@@ -24,9 +24,17 @@ contentRouter.post(
       .isLength({ min: 6 })
       .withMessage("Password is required"),
 
+    body("secret").custom((value) => {
+      if (value !== process.env.MEMBER_SECRET) {
+        throw new Error("Secret password is incorrect.");
+      }
+
+      return true;
+    }),
+
     body("confirmPassword").custom((value, { req }) => {
       if (value !== req.body.password) {
-        throw new Error("Password does not match");
+        throw new Error("Password does not match.");
       }
       return true;
     }),
