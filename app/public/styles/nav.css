@@ -33,7 +33,16 @@ nav > ul > li > a {
   font-weight: 600;
 }
 
+.user-name {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
 .signIn {
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
   display: flex;
   color: var(--main-color);
   background-color: var(--secondary-color);

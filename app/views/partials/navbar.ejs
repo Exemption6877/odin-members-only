@@ -3,9 +3,23 @@
     <img src="/icons/logo.svg" alt="logo" />
     <h2>Chirper</h2>
   </div>
+
+  <% if(isAuthenticated){%>
+  <p class="user-name"><%=user.first_name %> <%=user.last_name %></p>
+  <% } %>
   <ul>
     <li><a href="/">Home</a></li>
+    <% if(isAuthenticated){%>
+
+    <li>
+      <form action="/log-out" method="POST">
+        <button class="signIn" type="submit">Log Out</button>
+      </form>
+    </li>
+
+    <% } else { %>
     <li><a href="/log-in">Log In</a></li>
     <li><a class="signIn" href="/sign-up">Sign Up</a></li>
+    <%}%>
   </ul>
 </nav>

@@ -68,7 +68,7 @@ contentRouter.post(
   })
 );
 
-contentRouter.post("/logout", (req, res) => {
+contentRouter.post("/log-out", (req, res) => {
   req.logout(() => {
     res.redirect("/");
   });
