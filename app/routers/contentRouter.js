@@ -94,4 +94,10 @@ contentRouter.post(
   authController.postMembership
 );
 
+contentRouter.post(
+  "/newpost",
+  [body("content").trim().notEmpty()],
+  contentController.postNewPost
+);
+
 module.exports = contentRouter;

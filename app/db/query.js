@@ -55,6 +55,13 @@ ORDER BY release_date`
   return rows;
 }
 
+async function insertNewPost(content, release_date, user_id) {
+  await pool.query(
+    `INSERT INTO posts (content, release_date, user_id) VALUES ($1, $2, $3)`,
+    [content, release_date, user_id]
+  );
+}
+
 module.exports = {
   isEmailTaken,
   userByEmail,
@@ -62,4 +69,5 @@ module.exports = {
   createUser,
   updateMembership,
   getAllPosts,
+  insertNewPost,
 };

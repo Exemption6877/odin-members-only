@@ -18,6 +18,19 @@ async function getGuestContent(req, res) {
   }
 }
 
+async function postNewPost(req, res) {
+  try {
+    const { content } = req.body;
+    const release_date = new Date();
+
+    await db.insertNewPost(content, release_date, req.user.id);
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send("Something went wrong");
+  }
+}
+
 module.exports = {
   getGuestContent,
+  postNewPost,
 };

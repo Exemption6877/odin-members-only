@@ -13,8 +13,8 @@
   min-height: 150px;
 }
 
-.messageEntry > p {
-  align-self: center;
+.content {
+  margin: auto 0;
 }
 
 .messageTitle {
