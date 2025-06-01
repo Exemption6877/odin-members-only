@@ -46,10 +46,20 @@ async function updateMembership(email) {
   ]);
 }
 
+async function getAllPosts() {
+  const { rows } = await pool.query(
+    `SELECT content, release_date, first_name, last_name FROM posts
+JOIN users ON user_id = users.id
+ORDER BY release_date`
+  );
+  return rows;
+}
+
 module.exports = {
   isEmailTaken,
   userByEmail,
   authUser,
   createUser,
   updateMembership,
+  getAllPosts,
 };

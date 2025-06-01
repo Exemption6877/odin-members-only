@@ -1,0 +1,10 @@
+<div class="messageEntry">
+  <div class="messageTitle">
+    <h4>
+      <%= user.membership ? `${message.first_name} ${message.last_name}` :
+      'Username Hidden' %>
+    </h4>
+    <p><%=message.release_date%></p>
+  </div>
+  <p><%=message.content%></p>
+</div>

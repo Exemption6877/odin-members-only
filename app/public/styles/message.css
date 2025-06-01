@@ -1,0 +1,11 @@
+@import url("./styles.css");
+
+.messageEntry {
+  display: flex;
+  flex-direction: column;
+  background-color: bisque;
+}
+
+.messageTitle {
+  display: flex;
+}

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="stylesheet" href="styles/message.css" />
     <link rel="icon" href="icons//favicon.png" type="image/png" />
 
     <title>Chirper</title>
@@ -14,9 +15,8 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
     <main>
-      <% if(isAuthenticated){%>
-      <h1>Welcome <%=user.first_name%></h1>
-      <%}%>
+      <% if (messages) { %> <% messages.forEach(message => { %> <%-
+      include("./partials/message.ejs", { message:message }) %> <% }) %> <% } %>
     </main>
   </body>
   <%- include("./partials/footer.ejs") %>
