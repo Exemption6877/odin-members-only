@@ -1,4 +1,4 @@
-CREATE DATABASE members_only;
+-- CREATE DATABASE members_only;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
